@@ -11,14 +11,21 @@ Software.
 - Bootstrap
 - Git e GitHub
 
-## Funcionalidades previstas
-- Página pública
-- Login
-- Dashboard
-- Cadastro de pessoas atendidas
-- Cadastro de tipos de atendimento
-- Registro de atendimentos
-- Relatórios
+## Funcionalidades
+- Página pública (login)
+- Login com sessão e senha criptografada (`password_hash` / `password_verify`)
+- Dashboard com indicadores (pessoas ativas, tipos ativos, atendimentos em aberto/concluídos) e atalhos
+- Cadastro de pessoas atendidas (listar, criar, editar, inativar) com tela própria
+- Cadastro de tipos de atendimento (listar, criar, editar, inativar) com tela própria
+- Registro de atendimentos com filtro por status e atualização de status
+- API de usuários (JSON)
+
+## Arquitetura
+- `app/Controllers` — recebe a requisição, valida entrada e monta a resposta.
+- `app/Models` — concentra as queries de Pessoas e Tipos de Atendimento, deixando os
+  Controllers mais enxutos.
+- `app/Views` — telas HTML (Bootstrap) e partials reaproveitáveis (`app/Views/partials/navbar.php`).
+- `routes.php` — roteamento simples por `controller`/`action` via query string.
 
 ## Como executar localmente
 1. Clonar o repositório.

@@ -3,6 +3,9 @@
 require_once __DIR__ . '/app/Controllers/AuthController.php';
 require_once __DIR__ . '/app/Controllers/UsuariosController.php';
 require_once __DIR__ . '/app/Controllers/AtendimentosController.php';
+require_once __DIR__ . '/app/Controllers/PessoasController.php';
+require_once __DIR__ . '/app/Controllers/TiposAtendimentosController.php';
+require_once __DIR__ . '/app/Controllers/DashboardController.php';
 require_once __DIR__ . '/app/Middleware/auth.php';
 
 $controller = $_GET['controller'] ?? 'auth';
@@ -67,13 +70,58 @@ switch ($controller) {
         }
         break;
 
-   
+    case 'pessoas':
+        exigirAutenticacao();
+        $pessoasController = new PessoasController();
+
+        switch ($action) {
+            case 'tela':
+                $pessoasController->tela();
+                break;
+
+            case 'listar':
+                $pessoasController->listar();
+                break;
+
+            case 'buscar':
+            case 'buscarPorId':
+                $pessoasController->buscarPorId();
+                break;
+
+            case 'criar':
+                $pessoasController->criar();
+                break;
+
+            case 'atualizar':
+                $pessoasController->atualizar();
+                break;
+
+            case 'inativar':
+            case 'excluir':
+                $pessoasController->inativar();
+                break;
+
+            default:
+                http_response_code(404);
+                echo 'Acao de pessoas nao encontrada.';
+        }
+        break;
+
+    case 'tipos':
         exigirAutenticacao();
         $tiposController = new TiposAtendimentosController();
 
         switch ($action) {
+            case 'tela':
+                $tiposController->tela();
+                break;
+
             case 'listar':
                 $tiposController->listar();
+                break;
+
+            case 'listarAtivos':
+                $tiposController->listarAtivos();
                 break;
 
             case 'buscar':
@@ -105,6 +153,10 @@ switch ($controller) {
         $atendimentosController = new AtendimentosController();
 
         switch ($action) {
+            case 'tela':
+                $atendimentosController->tela();
+                break;
+
             case 'listar':
                 $atendimentosController->listar();
                 break;
@@ -133,6 +185,21 @@ switch ($controller) {
             default:
                 http_response_code(404);
                 echo 'Acao de atendimentos nao encontrada.';
+        }
+        break;
+
+    case 'dashboard':
+        exigirAutenticacao();
+        $dashboardController = new DashboardController();
+
+        switch ($action) {
+            case 'indicadores':
+                $dashboardController->indicadores();
+                break;
+
+            default:
+                http_response_code(404);
+                echo 'Acao de dashboard nao encontrada.';
         }
         break;
 

@@ -16,6 +16,12 @@ class AtendimentosController
         $this->pdo = $pdo;
     }
 
+    // Renderiza a tela de gerenciamento de atendimentos.
+    public function tela(): void
+    {
+        require __DIR__ . '/../Views/atendimentos/index.php';
+    }
+
     public function listar(): void
     {
         header('Content-Type: application/json; charset=utf-8');

@@ -1,0 +1,43 @@
+/* Ajustes visuais leves por cima do Bootstrap, usados nas telas internas. */
+
+body {
+    background-color: #f5f6fa;
+}
+
+.navbar-brand {
+    font-weight: 600;
+    letter-spacing: .4px;
+}
+
+.card {
+    border: none;
+    border-radius: .75rem;
+}
+
+.card-indicador .valor {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.card-indicador .rotulo {
+    font-size: .8rem;
+    text-transform: uppercase;
+    color: #6c757d;
+    letter-spacing: .3px;
+}
+
+.table thead th {
+    font-size: .78rem;
+    text-transform: uppercase;
+    color: #6c757d;
+    border-bottom-width: 1px;
+}
+
+.badge {
+    text-transform: capitalize;
+    font-weight: 500;
+}
+
+.tabela-acoes .btn {
+    margin-left: .25rem;
+}
